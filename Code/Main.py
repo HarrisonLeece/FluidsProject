@@ -10,6 +10,9 @@ import numpy as np
 g = 9.81
 #density in kg/m^3
 rho = 1000
+#viscosity of water
+mu = 8.4*10**(-4)
+
 #Source volumetric flow rate in m^3/s
 Qin = .02120
 #Source static pressure in kPa
@@ -26,15 +29,21 @@ reGuess = 1*10**5
 length = 205
 elevation = 25
 pHead = 30.58
-diameter = D
+D = D
 pressure = 150000
 pressureByGamma = pressure/(g*rho)
 minorLoss = 11.3
 
+#Kicker lines
 frFactor = coleBrook(ed1, reGuess)
 print(frFactor)
-
-
 v1 = velocityFxn(elevation, pressureByGamma, pHead, frFactor, length, D, minorLoss,g)
 
+#recursivly calls reyNum until change in Reynolds number per fxn call is small
+#returns reynolds, frictionFac, v
+rey, ff, vf = reyNum(D, reGuess, v1, rho, mu, elevation, pressureByGamma, pHead, frFactor, length, minorLoss, g, ed1, 0)
+print(str(outputVec[1]))
+vf = velocityFxn(elevation, pressureByGamma, pHead, outputVec[1], length, D, minorLoss,g)
+
 print(v1)
+print(vf)
