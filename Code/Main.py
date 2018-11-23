@@ -42,8 +42,7 @@ v1 = velocityFxn(elevation, pressureByGamma, pHead, frFactor, length, D, minorLo
 #recursivly calls reyNum until change in Reynolds number per fxn call is small
 #returns reynolds, frictionFac, v
 rey, ff, vf = reyNum(D, reGuess, v1, rho, mu, elevation, pressureByGamma, pHead, frFactor, length, minorLoss, g, ed1, 0)
-print(str(outputVec[1]))
-vf = velocityFxn(elevation, pressureByGamma, pHead, outputVec[1], length, D, minorLoss,g)
+vf = velocityFxn(elevation, pressureByGamma, pHead, ff, length, D, minorLoss,g)
 
-print(v1)
-print(vf)
+
+print('\n' + 'Final velocity: ' +str(vf))

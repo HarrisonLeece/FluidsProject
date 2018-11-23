@@ -11,12 +11,14 @@ def reyNum(dia, rey, velocity, density, viscosity, elevation, pressureByGamma, p
     oldRey = rey
     v = velocityFxn(elevation, pressureByGamma, pumpHead, frictionFac, length, dia, minorLoss,g)
     reynolds = (density * velocity * dia )/ viscosity
+
+    
     if ( abs(reynolds - oldRey) > 10 ):
-        print('If check + reynolds: ' + str(reynolds))
+        print('\n' + 'If check + reynolds: ' + str(reynolds))
         print('Iteration number: ' + str(n))
         frictionFac = coleBrook(ed,reynolds)
         n = n+1
-        reyNum(dia, reynolds, v, density, viscosity, elevation, pressureByGamma, pumpHead, frictionFac, length, minorLoss, g, ed, n)
+        return reyNum(dia, reynolds, v, density, viscosity, elevation, pressureByGamma, pumpHead, frictionFac, length, minorLoss, g, ed, n)
     else:
         print('Velocity' + str(v))
         print('Reynolds Number' + str(reynolds))
