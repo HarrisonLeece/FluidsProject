@@ -9,20 +9,19 @@ from fricFracFxn import coleBrook
 #and returns a new reynolds number (and roughness/dia for recusion)
 def reyNum(dia, rey, velocity, density, viscosity, elevation, pressureByGamma, pumpHead, frictionFac, length, minorLoss, g, ed, n):
     oldRey = rey
-    v = velocityFxn(elevation, pressureByGamma, pumpHead, frictionFac, length, dia, minorLoss,g)
     reynolds = (density * velocity * dia )/ viscosity
-
+    frictionFac = coleBrook(ed,reynolds)
+    v = velocityFxn(elevation, pressureByGamma, pumpHead, frictionFac, length, dia, minorLoss,g)
     
     if ( abs(reynolds - oldRey) > 10 ):
-        print('\n' + 'If check + reynolds: ' + str(reynolds))
         print('Iteration number: ' + str(n))
-        frictionFac = coleBrook(ed,reynolds)
         n = n+1
         return reyNum(dia, reynolds, v, density, viscosity, elevation, pressureByGamma, pumpHead, frictionFac, length, minorLoss, g, ed, n)
     else:
-        print('Velocity' + str(v))
-        print('Reynolds Number' + str(reynolds))
-        print('Friction Factor' + str(frictionFac))
+        print('Else check: ReynoldsDiff = ' + str(reynolds - oldRey))
+        print('Velocity ' + str(v))
+        print('Reynolds Number ' + str(reynolds))
+        print('Friction Factor ' + str(frictionFac))
         return reynolds, frictionFac, v
     
     

@@ -5,6 +5,7 @@ from fricFracFxn import coleBrook
 from velocityFxn import velocityFxn
 from reyNumFxn import reyNum
 import numpy as np
+import matplotlib as plt
 
 #Gravity m/s^2
 g = 9.81
@@ -25,16 +26,77 @@ ed1 = e/D
 #initial guess at reynolds number (in this case 10^5 for water
 reGuess = 1*10**5
 
-#first length of pipe vars
-length = 205
-elevation = 25
+################################################################################
+#Pipe vars
+#first length of main pipe vars
+length1 = 44
+elevation1 = 4
 pHead = 30.58
-D = D
-pressure = 150000
-pressureByGamma = pressure/(g*rho)
-minorLoss = 11.3
+d1 = 4
+pressure1 = 15000
+pressureByGamma1 = pressure/(g*rho)
+#One elbow fitting between node 1 and 2
+minorLoss1 = .3
 
-#Kicker lines
+#Second length of main pipe vars
+length1 = 4
+elevation1 = 4
+pHead = 0
+d1 = 4
+pressure1 = 15000
+pressureByGamma1 = pressure/(g*rho)
+minorLoss1 = .3
+
+#Second length of main pipe vars
+length2 = 4
+elevation1 = 4
+pHead = 0
+d1 = 4
+pressure1 = 15000
+pressureByGamma1 = pressure/(g*rho)
+minorLoss1 = .3
+
+#Third length of main pipe vars
+length3 = 4
+elevation1 = 4
+pHead = 0
+d1 = 4
+pressure1 = 15000
+pressureByGamma1 = pressure/(g*rho)
+minorLoss1 = .3
+
+#firstOutlet
+length4 = 0
+elevation1 = 0
+pHead = 0
+d1 = 2
+pressure1 = 15000
+pressureByGamma1 = pressure/(g*rho)
+minorLoss1 = 30
+
+#secondOutlet
+length5 = 5
+elevation1 = 0
+pHead = 0
+d1 = 2
+pressure1 = 15000
+pressureByGamma1 = pressure/(g*rho)
+minorLoss1 = .3
+
+#thirdOutlet
+length5 = 4
+elevation1 = 0
+pHead = 0
+d1 = 2
+pressure1 = 15000
+pressureByGamma1 = pressure/(g*rho)
+minorLoss1 = .3
+
+#############################################################################
+
+vin = Qin/(3.1416 * (d1/2)**2)
+
+#Kicker lines to obtain initial velocity
 frFactor = coleBrook(ed1, reGuess)
 print(frFactor)
 v1 = velocityFxn(elevation, pressureByGamma, pHead, frFactor, length, D, minorLoss,g)
