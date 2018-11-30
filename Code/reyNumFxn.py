@@ -7,7 +7,7 @@ from fricFracFxn import coleBrook
 
 #takes in roughness divided by hydraulic diameter, and reynolds number
 #and returns a new reynolds number (and roughness/dia for recusion)
-def reyNum(dia, rey, velocity, density, viscosity, elevation, pressureByGamma, pumpHead, frictionFac, length, minorLoss, g, ed, n):
+def reyNumValidation(dia, rey, velocity, density, viscosity, elevation, pressureByGamma, pumpHead, frictionFac, length, minorLoss, g, ed, n):
     oldRey = rey
     reynolds = (density * velocity * dia )/ viscosity
     frictionFac = coleBrook(ed,reynolds)
@@ -24,4 +24,6 @@ def reyNum(dia, rey, velocity, density, viscosity, elevation, pressureByGamma, p
         print('Friction Factor ' + str(frictionFac))
         return reynolds, frictionFac, v
     
-    
+def reyNum(velocity, dia, density, viscosity):
+    r = (density * velocity * dia )/ viscosity
+    return r
