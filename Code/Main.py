@@ -46,7 +46,8 @@ def equations(p, ffs):
 	#Diameter 
 	D = 2/39.37
 	A1 = 3.1416/4 * D**2
-	A0 = 3.1416/4 * (4/39.37)**2
+	DM = 2
+	A0 = 3.1416/4 * (DM/39.37)**2
 	#initial flow velocity
 	v0 = Qin/A0
 	re0 = reyNum(v0,(4/39.37),rho,mu)
@@ -56,8 +57,6 @@ def equations(p, ffs):
 	#Roughness
 	e = 0.0000015
 	ed= e/D
-
-	print(A1)
 
 	nre1 = reyNum(v1,D,rho,mu)
 	nre2 = reyNum(v2,D,rho,mu)
@@ -89,7 +88,7 @@ Qin = .02120
 #Source static pressure in kPa
 Pin = 15
 #Roughness and hydraulic diameter
-e = .00026
+e = .0000015
 D = .1
 #Roughness over diameter
 ed1 = e/D
